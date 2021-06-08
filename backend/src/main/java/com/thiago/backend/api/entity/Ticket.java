@@ -7,6 +7,7 @@ import com.thiago.backend.api.enums.PriorityEnum;
 import com.thiago.backend.api.enums.StatusEnum;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -35,7 +36,13 @@ public class Ticket {
     private String description;
 
     private String image;
-
+    
+    /*
+     * Faz com que este atributo seja ignorado, não criando uma representação dele na tabela do banco de dados
+     * Quando esta informação for necessária, no ChangeStatusRepository já há um método que retorna as uma lista 
+     * com as alterações feitas em um Ticket (ChangeStatus) a partir do id de um Ticket.
+     * */
+    @Transient
     private List<ChangeStatus> changes;
 
     public String getId() {

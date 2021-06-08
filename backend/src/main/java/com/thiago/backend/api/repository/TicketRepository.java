@@ -2,8 +2,9 @@ package com.thiago.backend.api.repository;
 
 import com.thiago.backend.api.entity.Ticket;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface TicketRepository extends MongoRepository<Ticket, String> {
@@ -15,7 +16,7 @@ public interface TicketRepository extends MongoRepository<Ticket, String> {
      */
     Page<Ticket> findByUserIdOrderByDateDesc(Pageable pages, String id);
 
-    Page<Ticket> findByTitleIgnoreCaseContainingAndStatusIgnoreCaseContainingAndPriorityIgnoreCaseContainingOrderByDateDesc(
+    Page<Ticket> findByTitleIgnoreCaseContainingAndStatusAndPriorityIgnoreCaseContainingOrderByDateDesc(
             String title, String status, String priority, Pageable pages);
     
     /*
@@ -24,14 +25,14 @@ public interface TicketRepository extends MongoRepository<Ticket, String> {
      * Este método força com que além dos filtros do método anterior, uma validação
      * pelo id do usuário será aplicada para garantir o supracitado.
      * */
-    Page<Ticket> findByTitleIgnoreCaseContainingAndStatusIgnoreCaseContainingAndPriorityIgnoreCaseContainingAndUserIdOrderByDateDesc(
+    Page<Ticket> findByTitleIgnoreCaseContainingAndStatusAndPriorityAndUserIdOrderByDateDesc(
             String title, String status, String priority, Pageable pages);
     
     /*
      * Quando um técnico loga na aplicação, ele só poderá ver os tickets que estão
      * atribuídos a ele. Este método provê os dados para esta situação
      * */
-    Page<Ticket> findByTitleIgnoreCaseContainingAndStatusIgnoreCaseContainingAndPriorityIgnoreCaseContainingAndAssignedUserOrderByDateDesc(
+    Page<Ticket> findByTitleIgnoreCaseContainingAndStatusAndPriorityAndAssignedUserOrderByDateDesc(
             String title, String status, String priority, Pageable pages);
     
     
