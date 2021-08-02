@@ -12,14 +12,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * dessa implementação que ele será capaz de controlar quem está autenticado na aplicação
  * 
  * */
-public class JwtUser implements UserDetails{
+public class JwtUser implements UserDetails {
 	private static final long serialVersionUID = -9136227786974184866L;
-	
+
 	private final String id;
 	private final String userName;
 	private final String password;
 	private final Collection<? extends GrantedAuthority> authorities;
-	
+
 	public JwtUser(String id, String userName, String password, Collection<? extends GrantedAuthority> authorities) {
 		super();
 		this.id = id;
@@ -32,7 +32,7 @@ public class JwtUser implements UserDetails{
 	public String getId() {
 		return id;
 	}
-	
+
 	@Override
 	public String getUsername() {
 		return userName;
@@ -55,13 +55,13 @@ public class JwtUser implements UserDetails{
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
-	
+
 	@JsonIgnore
 	@Override
 	public String getPassword() {
-		return password ;
+		return password;
 	}
-	
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
@@ -71,8 +71,5 @@ public class JwtUser implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	
-	
 
 }
