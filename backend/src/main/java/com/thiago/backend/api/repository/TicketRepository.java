@@ -34,8 +34,11 @@ public interface TicketRepository extends MongoRepository<Ticket, String> {
         Page<Ticket> findByTitleIgnoreCaseContainingAndStatusAndPriorityAndAssignedUserOrderByDateDesc(String title,
                         String status, String priority, Pageable pages);
 
+        Page<Ticket> findByTitleIgnoreCaseContainingAndStatusAndPriorityOrderByDateDesc(String title, String status,
+                        String priority, Pageable pages);
+
         /*
-         * Como durante a cração do ticket é gerado um número aleatório, este método
+         * Como durante a criação do ticket é gerado um número aleatório, este método
          * facilita a pesquisa pelo número do ticket
          */
         Page<Ticket> findByNumber(Integer number, Pageable pages);

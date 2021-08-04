@@ -24,7 +24,7 @@ public interface TicketService {
      * @param id
      * @return
      */
-    Ticket findById(Long id);
+    Ticket findById(String id);
 
     /**
      * Exclui um ticket da base de dados a partir do id.
@@ -44,7 +44,8 @@ public interface TicketService {
     Page<Ticket> listTicket(int page, int count);
 
     /**
-     * Grava as alterações de status feitas em um ticket (data, autor, etc).
+     * Para cada alteração de status em um ticket cria um registro em uma coleção do
+     * mongoDB (data, autor, etc).
      *
      * @param changeStatus
      * @return
